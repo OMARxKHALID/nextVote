@@ -32,7 +32,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import { updateVoteById } from "@/components/actions/vote";
+import { updateVoteById } from "@/lib/actions/vote";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   title: z.string().min(5, { message: "Title has a minimum characters of 5" }),
@@ -41,6 +42,7 @@ const FormSchema = z.object({
 });
 
 export default function EditVoteForm({ vote }) {
+  const router = useRouter();
   const form = useForm({
     mode: "onSubmit",
     resolver: zodResolver(FormSchema),
@@ -53,11 +55,13 @@ export default function EditVoteForm({ vote }) {
 
   async function onSubmit(data) {
     const { _id } = vote;
+
     await toast.promise(updateVoteById({ data, _id }), {
       loading: "updating...",
       success: "Successfully updated vote",
       error: (err) => "Fail to update a vote. " + err.toString(),
     });
+    router.push(`/vote/${_id}`);
   }
 
   return (

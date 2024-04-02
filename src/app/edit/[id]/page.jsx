@@ -1,4 +1,4 @@
-import { getVoteById } from "@/components/actions/vote";
+import { getVoteById } from "@/lib/actions/vote";
 import EditVoteForm from "@/app/edit/[id]/form";
 import { redirect } from "next/navigation";
 import React from "react";

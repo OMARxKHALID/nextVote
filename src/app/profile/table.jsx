@@ -33,7 +33,7 @@ import {
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { deleteVoteById } from "../../components/actions/vote";
+import { deleteVoteById } from "../../lib/actions/vote";
 
 export default function ProfileTable({ data }) {
   const [animationParent] = useAutoAnimate();

@@ -30,7 +30,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { createVote } from "@/components/actions/vote";
+import { createVote } from "@/lib/actions/vote";
 import { redirect, useRouter } from "next/navigation";
 
 const FormSchema = z

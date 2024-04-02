@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import ProfileTable from "./table";
-import { getVote } from "../../components/actions/vote";
+import { getVote } from "../../lib/actions/vote";
 
 const ProfilePage = async ({ searchParams }) => {
   const votes = await getVote(searchParams.id);

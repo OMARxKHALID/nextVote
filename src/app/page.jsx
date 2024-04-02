@@ -1,4 +1,4 @@
-import { listActiveVotes, listExpiredVotes } from "@/components/actions/vote";
+import { listActiveVotes, listExpiredVotes } from "@/lib/actions/vote";
 import ListVote from "@/components/ListVote";
 import ListVoteLoading from "@/components/ListVoteLoading";
 import React, { Suspense } from "react";

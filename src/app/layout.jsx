@@ -10,10 +10,13 @@ import Provider from "@/components/providers/client-provider";
 import QueryProvider from "@/components/providers/query-provider";
 import Footer from "@/components/footer";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Head from "next/head";
 
 const inter = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL("https://nextjsxvote.vercel.app/"),
+
   title: {
     template: "%s | NEXT VOTE",
     default: "NEXT VOTE",
@@ -28,9 +31,12 @@ export const metadata = {
     description:
       "Cast your vote now and see live updates on the poll results, powered by the Mongodb database integration in our web app",
     siteName: "Next Vote",
+    url: "https://nextjsxvote.vercel.app/",
+    siteName: "Next Vote",
+    images: "/next.svg",
     type: "website",
   },
-  keywords: ["Next Vote", "nextVote"],
+  keywords: ["Next Vote", "nextVote", "nextjsxvote"],
 };
 
 export default async function RootLayout({ children }) {
@@ -39,6 +45,9 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en" suppressHydrationWarning={isDev}>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
       <body
         className={`${inter.className} bg-[#010106] text-gray-200 antialiased  py-10`}
       >

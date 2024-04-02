@@ -1,7 +1,11 @@
 import { useSession } from "next-auth/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { castVoteLogs, getVoteLogs, getVoteOptionsById } from "../actions/vote";
+import {
+  castVoteLogs,
+  getVoteLogs,
+  getVoteOptionsById,
+} from "../../lib/actions/vote";
 import { getHightValueObjectKey } from "@/lib/utils";
 
 export function useGetVote(id) {

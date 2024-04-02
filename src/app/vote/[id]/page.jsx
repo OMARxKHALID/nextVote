@@ -1,9 +1,11 @@
 import React from "react";
 import { redirect } from "next/navigation";
-import { getVoteById } from "@/components/actions/vote";
+import { getVoteById } from "@/lib/actions/vote";
 import Info from "../components/info";
 import VoteWrapper from "../components/VoteWrapper";
 import CloseForm from "../components/CloseForm";
+import { DEFAUTL_DESCRIPTION } from "@/lib/constant";
+import { useSession } from "next-auth/react";
 
 export default async function Page({ params }) {
   const { id } = params;
@@ -24,4 +26,34 @@ export default async function Page({ params }) {
       <CloseForm />
     </>
   );
+}
+
+export function useUser() {
+  const { data: session } = useSession();
+  return session;
+}
+
+export async function generateMetadata({ params, session }) {
+  const { id } = params;
+  const vote = await getVoteById(id);
+  const url = "https://nextjsxvote.vercel.app/";
+
+  return {
+    title: vote?.title,
+    authors: {
+      name: session?.user?.name,
+    },
+    description: vote?.description || DEFAUTL_DESCRIPTION,
+    openGraph: {
+      description: vote?.description || DEFAUTL_DESCRIPTION,
+      title: vote?.title,
+      url: url + "vote/" + vote?._id,
+      siteName: "Next Vote",
+      images:
+        url +
+        `og?author=${session?.user?.image}&author_url=${session?.user?.image}&title=${vote?.title}`,
+      type: "website",
+    },
+    keywords: ["Next Vote", session?.user?.name, "OMARxKHALID"],
+  };
 }
