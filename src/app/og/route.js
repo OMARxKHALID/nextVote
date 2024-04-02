@@ -4,11 +4,11 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 const regularFont = fetch(
-  new URL("../../public/SpaceGrotesk-Regular.ttf", import.meta.url)
+  new URL("/public/SpaceGrotesk-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 const boldFont = fetch(
-  new URL("../../public/SpaceGrotesk-Bold.ttf", import.meta.url)
+  new URL("/public/SpaceGrotesk-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 export async function GET(request) {
