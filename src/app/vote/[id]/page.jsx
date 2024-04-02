@@ -51,7 +51,7 @@ export async function generateMetadata({ params, session }) {
       siteName: "Next Vote",
       images:
         url +
-        `og?author=${session?.user?.image}&author_url=${session?.user?.image}&title=${vote?.title}`,
+        `og?author=${session?.user?.image}&image=${session?.user?.image}&title=${vote?.title}`,
       type: "website",
     },
     keywords: ["Next Vote", session?.user?.name, "OMARxKHALID"],
