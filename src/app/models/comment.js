@@ -13,8 +13,6 @@ const commentSchema = new mongoose.Schema(
       ref: "Vote",
       required: true,
     },
-    created_at: { type: Date, default: Date.now },
-    is_edit: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

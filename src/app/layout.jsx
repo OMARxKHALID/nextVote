@@ -33,7 +33,7 @@ export const metadata = {
     siteName: "Next Vote",
     url: "https://nextjsxvote.vercel.app/",
     siteName: "Next Vote",
-    images: "/next.svg",
+    images: "/og,png",
     type: "website",
   },
   keywords: ["Next Vote", "nextVote", "nextjsxvote"],

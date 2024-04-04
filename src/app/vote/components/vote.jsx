@@ -20,7 +20,7 @@ export default function Vote({ id, endDate }) {
   if (isLoading || isLogLoading) return <VoteLoading />;
 
   if (error || logError) {
-    toast.error("Error while casting vote");
+    toast.error("Error while fetching data");
   }
 
   const hasVoted = voteLog && Object.keys(voteLog).length > 0;
@@ -36,10 +36,11 @@ export default function Vote({ id, endDate }) {
   };
   const isExpired = new Date(endDate) < new Date();
   const isDisabled = hasVoted || isExpired;
+
   return (
     <div className="space-y-10">
       <div>
-        {Object.keys(optionsData.options).map((key, index) => {
+        {Object.keys(optionsData?.options || {}).map((key, index) => {
           const percentage = Math.round(optionsData.options[key] * totalVote);
           return (
             <div
@@ -50,9 +51,7 @@ export default function Vote({ id, endDate }) {
               onClick={() => !isDisabled && handleVote(key)}
             >
               <h1 className="w-40 line-clamp-2 text-lg break-words select-none">
-                <h1 className="w-40 line-clamp-2 text-lg break-words select-none">
-                  {highestKey === key ? "🎉" + key : key}
-                </h1>
+                {highestKey === key ? "🎉" + key : key}
               </h1>
               <div className="flex-1 flex items-center gap-2">
                 <div className="py-3 pr-5 border-l border-zinc-400 flex-1">

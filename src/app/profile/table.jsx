@@ -79,8 +79,8 @@ export default function ProfileTable({ data }) {
 
           <TableBody ref={animationParent}>
             {votes &&
-              votes.map((vote) => (
-                <TableRow key={vote.id}>
+              votes.map((vote, index) => (
+                <TableRow key={vote._id + index}>
                   <TableCell className="font-medium cursor-pointer">
                     <Link href={`/vote/${vote._id}`}>
                       {vote.title.length > 50

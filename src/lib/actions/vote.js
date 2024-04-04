@@ -2,14 +2,14 @@
 
 const BASE_URL = process.env.NEXTAUTH_URL;
 
-export async function createVote(vote) {
+async function fetchData(url, method = "POST", body) {
   try {
-    const res = await fetch(`${BASE_URL}/api/vote`, {
-      method: "POST",
+    const res = await fetch(`${BASE_URL}${url}`, {
+      method,
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ vote }),
+      body: body ? JSON.stringify(body) : undefined,
       cache: "no-store",
     });
     const data = await res.json();
@@ -17,155 +17,54 @@ export async function createVote(vote) {
   } catch (error) {
     return handleFetchError(error);
   }
+}
+
+export async function createVote(vote) {
+  return fetchData("/api/vote", "POST", { vote });
 }
 
 export async function getVote(userId) {
-  try {
-    const res = await fetch(`${BASE_URL}/api/vote/get`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId }),
-      cache: "no-store",
-    });
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    return handleFetchError(error);
-  }
+  return fetchData("/api/vote/get", "POST", { userId });
 }
 
 export async function deleteVoteById(_id) {
-  try {
-    const res = await fetch(`${BASE_URL}/api/vote/delete`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ _id }),
-      cache: "no-store",
-    });
-    const resData = await res.json();
-    return resData;
-  } catch (error) {
-    return handleFetchError(error);
-  }
+  return fetchData("/api/vote/delete", "POST", { _id });
 }
 
 export async function getVoteById(_id) {
-  try {
-    const res = await fetch(`${BASE_URL}/api/vote/get/${_id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ _id }),
-      cache: "no-store",
-    });
-    const resData = await res.json();
-    return resData;
-  } catch (error) {
-    return handleFetchError(error);
-  }
+  return fetchData(`/api/vote/get/${_id}`, "POST", { _id });
 }
 
 export async function updateVoteById({ _id, data }) {
-  try {
-    const res = await fetch(`${BASE_URL}/api/vote/edit`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ _id, data }),
-      cache: "no-store",
-    });
-    const resData = await res.json();
-    return resData;
-  } catch (error) {
-    return handleFetchError(error);
-  }
+  return fetchData("/api/vote/edit", "POST", { _id, data });
 }
 
 export async function getVoteOptionsById(_id) {
-  try {
-    const res = await fetch(`${BASE_URL}/api/vote/get/${_id}/options`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ _id }),
-    });
-    const resData = await res.json();
-    return resData;
-  } catch (error) {
-    return handleFetchError(error);
-  }
+  return fetchData(`/api/vote/get/${_id}/options`, "POST", { _id });
 }
 
 export async function castVoteLogs(id, option, userId) {
-  try {
-    const res = await fetch(`${BASE_URL}/api/vote/cast/${id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ option, id, userId }),
-      cache: "no-store",
-    });
-    const resData = await res.json();
-    return resData;
-  } catch (error) {
-    return handleFetchError(error);
-  }
+  return fetchData(`/api/vote/cast/${id}`, "POST", { option, id, userId });
 }
 
 export async function getVoteLogs(id, userId) {
-  try {
-    const res = await fetch(`${BASE_URL}/api/vote/cast/get`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id, userId }),
-      cache: "no-store",
-    });
-    const resData = await res.json();
-    return resData;
-  } catch (error) {
-    return handleFetchError(error);
-  }
+  return fetchData("/api/vote/cast/get", "POST", { id, userId });
 }
 
 export async function listActiveVotes() {
-  try {
-    const res = await fetch(`${BASE_URL}/api/vote/list/active`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
-    const resData = await res.json();
-    return resData;
-  } catch (error) {
-    return handleFetchError(error);
-  }
+  return fetchData("/api/vote/list/active");
 }
+
 export async function listExpiredVotes() {
-  try {
-    const res = await fetch(`${BASE_URL}/api/vote/list/expired`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
-    const resData = await res.json();
-    return resData;
-  } catch (error) {
-    return handleFetchError(error);
-  }
+  return fetchData("/api/vote/list/expired");
+}
+
+export async function createComment({ text, voteId, sendBy }) {
+  return fetchData("/api/comment/create", "POST", { text, voteId, sendBy });
+}
+
+export async function getComment(voteId) {
+  return fetchData("/api/comment", "POST", voteId);
 }
 
 async function handleFetchError(error) {
