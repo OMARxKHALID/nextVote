@@ -40,7 +40,5 @@ export const emojis = [
   "🎸",
 ];
 
-export const NUMBER_OF_COMMENTS = 10;
-
 export const DEFAUTL_DESCRIPTION =
-  "Cast your vote now and see live updates on the poll results, powered by mongodb database integration in our web app";
+  "Cast your vote now and see live upresultsdates on the poll";

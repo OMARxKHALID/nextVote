@@ -108,8 +108,9 @@ export default function VoteForm() {
       vote_options[option] = 0;
     });
     const insertData = { ...data, vote_options, userId };
+    let loadingId;
     try {
-      const loadingId = toast.loading("creating...");
+      loadingId = toast.loading("creating...");
       const data = await createVote(insertData);
       const { _id } = data?.vote;
       toast.dismiss(loadingId);

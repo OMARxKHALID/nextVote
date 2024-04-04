@@ -5,8 +5,6 @@ import Info from "../components/info";
 import VoteWrapper from "../components/VoteWrapper";
 import CloseForm from "../components/CloseForm";
 import { DEFAUTL_DESCRIPTION } from "@/lib/constant";
-import { useSession } from "next-auth/react";
-import { useGetVote } from "@/components/hooks/vote";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
