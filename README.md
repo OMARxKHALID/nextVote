@@ -2,7 +2,7 @@
 
 **Cast your vote now and see live updates on the poll results! NextVote is a web application built using Next.js, Tailwind CSS, and Shadcn UI, with authentication powered by GitHub and data management handled by Tanstack's React Query**
 
-![NextVote Banner](https://res.cloudinary.com/dpvhbumeb/image/upload/v1712248543/vl9yf9rvhbvv6eavstk5.png)
+![NextVote Banner](https://res.cloudinary.com/dpvhbumeb/image/upload/v1712249306/c0mtjxd6utgxjviccrci.png)
 
 ## Description
 
