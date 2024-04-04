@@ -9,6 +9,7 @@ import { GearIcon, PlusIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Logout from "./logout";
 import Link from "next/link";
+// TODO: its shows squre pic in mobile fix it
 
 export default function Profile({ user }) {
   return (

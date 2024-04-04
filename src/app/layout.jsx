@@ -10,7 +10,7 @@ import Provider from "@/components/providers/client-provider";
 import QueryProvider from "@/components/providers/query-provider";
 import Footer from "@/components/footer";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import Head from "next/head";
+// import Head from "next/head";
 
 const inter = Space_Grotesk({ subsets: ["latin"] });
 
@@ -24,16 +24,14 @@ export const metadata = {
   authors: {
     name: "OMAR KHALID",
   },
-  description:
-    "Cast your vote now and see live updates on the poll results, powered by the Mongodb database integration in our web app",
+  description: "Cast your vote now and see live updates on the poll results",
   openGraph: {
     title: "Next Vote",
-    description:
-      "Cast your vote now and see live updates on the poll results, powered by the Mongodb database integration in our web app",
+    description: "Cast your vote now and see live updates on the poll results",
     siteName: "Next Vote",
     url: "https://nextjsxvote.vercel.app/",
     siteName: "Next Vote",
-    images: "/og,png",
+    images: "/og.png",
     type: "website",
   },
   keywords: ["Next Vote", "nextVote", "nextjsxvote"],
@@ -42,12 +40,12 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const isDev = process.env.NODE_ENV === "development";
   const session = await getServerSession(authOptions);
-
+  // TODO: fix header
   return (
     <html lang="en" suppressHydrationWarning={isDev}>
-      <Head>
+      {/* <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
+      </Head> */}
       <body
         className={`${inter.className} bg-[#010106] text-gray-200 antialiased  py-10`}
       >

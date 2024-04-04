@@ -41,7 +41,8 @@ export default function Vote({ id, endDate }) {
     <div className="space-y-10">
       <div>
         {Object.keys(optionsData?.options || {}).map((key, index) => {
-          const percentage = Math.round(optionsData.options[key] * totalVote);
+          const percentage =
+            Math.round(optionsData.options[key] * 100) / totalVote;
           return (
             <div
               key={index}

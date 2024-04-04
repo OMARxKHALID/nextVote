@@ -34,7 +34,10 @@ export function useComment(voteId) {
     mutationFn: (text) => handleComment(text),
     onSuccess: (data) => {
       console.log("🚀 ~ useComment ~ data:", data);
-
+      queryClient.setQueryData(["comments", voteId], (oldData) => {
+        // Update comments locally instead of waiting for refetch
+        return [...oldData, data.comment];
+      });
       queryClient.invalidateQueries(["comments", voteId]);
       setComments((prevComments) => [...prevComments, data.comment]);
     },

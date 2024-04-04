@@ -6,6 +6,9 @@ import VoteWrapper from "../components/VoteWrapper";
 import CloseForm from "../components/CloseForm";
 import { DEFAUTL_DESCRIPTION } from "@/lib/constant";
 import { useSession } from "next-auth/react";
+import { useGetVote } from "@/components/hooks/vote";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 
 export default async function Page({ params }) {
   const { id } = params;
@@ -28,15 +31,11 @@ export default async function Page({ params }) {
   );
 }
 
-export function useUser() {
-  const { data: session } = useSession();
-  return session;
-}
-
-export async function generateMetadata({ params, session }) {
+export async function generateMetadata({ params }) {
   const { id } = params;
   const vote = await getVoteById(id);
   const url = "https://nextjsxvote.vercel.app/";
+  const session = await getServerSession(authOptions);
 
   return {
     title: vote?.title,

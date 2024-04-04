@@ -40,6 +40,7 @@ export function Commentbox({ id }) {
       onSuccess: () => {
         toast.dismiss(toastId);
         toast.success("Comment posted successfully");
+        scrollToTop();
       },
       onError: () => {
         toast.dismiss(toastId);
@@ -78,8 +79,8 @@ export function Commentbox({ id }) {
                     <Image
                       src={comment?.user?.image || user?.image}
                       alt={comment?.user?.name || user?.name}
-                      width={60}
-                      height={60}
+                      width={55}
+                      height={55}
                       className={cn("rounded-full ring-2")}
                     />
                     <div className="w-full">
